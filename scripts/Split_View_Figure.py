@@ -38,7 +38,7 @@ from omero.sys import ParametersI
 JSON_FILEANN_NS = "omero.web.figure.json"
 
 
-def channelMarshal(channel):
+def channel_marshal(channel):
     """
     Return a dict with all there is to know about a channel.
 
@@ -172,7 +172,7 @@ def get_panel_json(image, x, y, width, height, c_index=None):
     py = image.getPrimaryPixels().getPhysicalSizeY()
 
     # channelMarshal gives us 'active':False for each channel
-    channels = [channelMarshal(x) for x in image.getChannels()]
+    channels = [channel_marshal(x) for x in image.getChannels()]
 
     # Just turn on 1 channel
     if c_index is not None:
@@ -246,8 +246,8 @@ def create_omero_figure(conn, images, params):
 
 
 if __name__ == "__main__":
-    dataTypes = [rstring('Image')]
-    labelTypes = [rstring('Name'), rstring('Tags')]
+    data_types = [rstring('Image')]
+    label_types = [rstring('Name'), rstring('Tags')]
     client = scripts.client(
         'Split_View_Figure.py',
         """
@@ -256,7 +256,7 @@ if __name__ == "__main__":
         scripts.String(
             "Data_Type", optional=False, grouping="1",
             description="Choose source of images",
-            values=dataTypes, default="Image"),
+            values=data_types, default="Image"),
 
         scripts.List(
             "IDs", optional=False, grouping="2",
@@ -265,7 +265,7 @@ if __name__ == "__main__":
         scripts.String(
             "Row_Labels", optional=False, grouping="3",
             description="How to label each image",
-            values=labelTypes, default="Name"),
+            values=label_types, default="Name"),
 
         scripts.String(
             "Figure_Name", optional=False, grouping="4",
