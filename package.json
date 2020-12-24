@@ -34,5 +34,8 @@
   },
   "dependencies": {
     "@openmicroscopy/shape-editor": "^4.0.0"
+  },
+  "scripts": {
+    "serve:lhci": "NODE_ENV=production grunt demo"
   }
 }
